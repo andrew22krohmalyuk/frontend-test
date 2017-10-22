@@ -4,12 +4,24 @@ import { Field, reduxForm } from 'redux-form';
 class Form extends Component {
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
-    console.log(handleSubmit);
+    let imgUrl = '/checked.svg';
+    let styles = {}
+
+    if(this.props.step === 'two') {
+        styles = {
+            transform: 'translateX(-300px)'
+        }
+    } else if(this.props.step === 'three') {
+        styles = {
+            transform: 'translateX(-600px)'
+        }
+    }
+
     return (
     <form onSubmit={handleSubmit}>
-      <div className="container">
+      <div className="container" style={styles}>
         <div className="first-block">
-        <div>
+            <div>
             <label>EMAIL</label>
             <div>
                 <Field
@@ -17,9 +29,9 @@ class Form extends Component {
                     component="input"
                     type="text"
                     />
-            </div>
+             </div>
          </div>
-        <div>
+            <div>
             <label>PASSWORD</label>
             <div>
                 <Field
@@ -39,11 +51,11 @@ class Form extends Component {
                     />
             </div>
           </div>
-       </div>
+         </div>
         <div className="second-block">
-        <div>
-            <label>DATE OF BIRTH</label>
             <div>
+                <label>DATE OF BIRTH</label>
+                <div>
                 <Field
                     name="day-of-birth"
                     component="input"
@@ -63,41 +75,41 @@ class Form extends Component {
                     placeholder="YYYY"
                     />
               </div>
-              </div>
-        <div>
-            <label>GENDER</label>
-        <div>
-          <label>
-            <Field name="sex" component="input" type="radio" value="male" />
-            MALE
-          </label>
-          <label>
-            <Field name="sex" component="input" type="radio" value="female" />
-            FEMALE
-          </label>
-          <label>
-            <Field name="sex" component="input" type="radio" value="unspecired" />
-            UNSPECIRED
-          </label>
-         </div>
-        </div>
-        <div>
-            <label>WHERE DID YOU HERE ABOUT IS?</label>
+             </div>
+            <div className="gender">
+                <label>GENDER</label>
+                <div>
+                <label>
+                    <Field name="sex" component="input" type="radio" value="male" />
+                 </label>
+                <label>
+                    <Field name="sex" component="input" type="radio" value="female" />
+                 </label>
+                <label>
+                    <Field name="sex" component="input" type="radio" value="unspecired" />
+                 </label>
+             </div>
+             </div>
             <div>
-                <Field name="where-did-you-here" component="select">
-                    <option />
-                    <option value="social-network">Social Network</option>
-                    <option value="tv">TV</option>
-                    <option value="another-source">Another Source</option>
-                </Field>
+                <label>WHERE DID YOU HERE ABOUT IS?</label>
+                <div>
+                    <Field name="where-did-you-here" component="select">
+                        <option />
+                        <option value="social-network">Social Network</option>
+                        <option value="tv">TV</option>
+                        <option value="another-source">Another Source</option>
+                    </Field>
+                </div>
+             </div>
+         </div>
+        <div className="third-block">
+            <div>
+                <img src={imgUrl} />
+                <div className="container-btn">
+                    <button type="submit" disabled={pristine || submitting}>Go to Dashboard -></button>
+                </div>
             </div>
          </div>
-       </div>
-        <div className="third-block">
-        <div>
-            <button type="submit" disabled={pristine || submitting}>Go to Dashboard</button>
-        </div>
-       </div>
       </div>
     </form>
     );

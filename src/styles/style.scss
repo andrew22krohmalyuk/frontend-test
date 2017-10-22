@@ -1,6 +1,6 @@
 @import "reset.scss";
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-
+* {box-sizing: border-box;}
 $blue: #3498db;
 
 #root {
@@ -9,6 +9,7 @@ $blue: #3498db;
         width: 300px;
         border: 1px solid #ccc;
         border-radius: 5px;
+            height: 410px;
         h2 {
             color: $blue;
             text-align: center;
@@ -32,7 +33,7 @@ $blue: #3498db;
                         height: 100%;
                         left: 0;
                         background: $blue;
-                        width: 50%;
+                        transition: all ease-out .3s;
                     }
                 }
             }
@@ -42,6 +43,7 @@ $blue: #3498db;
             width: 300px;
             height: 250px;
             overflow: hidden;
+            margin-bottom: 30px;
             .container {
                 position: absolute;
                 width: 900px;
@@ -64,12 +66,169 @@ $blue: #3498db;
                             input {
                                 width: 100%;
                                 border: transparent;
-                                border-bottom: 1px solid #999;
+                                border-bottom: 1px solid #ccc;
                                 color: #444;
                                 line-height: 170%;
+                                font-family: 'Roboto';
+                                font-size: 18px;
                             }
                         }
                     }
+                }
+                .second-block {
+                    padding: 10px;
+                    div {
+                        margin-top: 15px;
+                        text-align: center;
+                        label {
+                            font-family: 'Roboto';
+                            color: #999;
+                            &:last-child {
+                                margin-right: 5px;
+                            }
+                            &:first-child {
+                                margin-left: -5px;
+                            }
+                        }
+                        div {
+                            display: flex;
+                            justify-content: space-around;
+                            input {
+                                flex-grow: 1;
+                                width: 50px;
+                                padding: 5px 10px;
+                                text-align: center;
+                                border: 1px solid #999;
+                                border-right: none;
+                                padding: 5px 10px;
+                                &::placeholder {
+                                  color: #999;
+                                }
+                                &:last-child {
+                                    border-right: 1px solid #999;
+                                }
+                            }
+                            label {
+                                font-size: 12px;
+                                flex-grow: 1;
+                                width: 33.3%;
+                                input {
+                                    width: 100%;
+                                    appearance: none;
+                                }
+                            }
+                            select {
+                                width: 100%;
+                            }
+                        }
+                    }
+                    .gender {
+                        div {
+                            label {
+                                input {
+                                    padding: 12px;
+                                    border: 1px solid #999;
+                                    border-right: 0;
+                                    cursor: pointer;
+                                    &:after {
+                                        color: #999;
+                                    }
+                                    &:checked {
+                                         background: $blue;
+                                         border: 1px solid $blue;
+                                         &:after {
+                                            color: #fff;
+                                         }
+                                    }
+                                }
+                                &:nth-child(1) {
+                                    input {
+                                        position: relative;
+                                        &:after {
+                                            transform: translate(-50%,-50%);
+                                            font-family: 'Roboto';
+                                            position: absolute;
+                                            content: 'MALE';
+                                        }
+                                    }
+                                }
+                                &:nth-child(2) {
+                                    input {
+                                        position: relative;
+                                        &:after {
+                                            transform: translate(-50%,-50%);
+                                            font-family: 'Roboto';
+                                            position: absolute;
+                                            content: 'FEMALE';
+                                        }
+                                    }
+                                }
+                                &:nth-child(3) {
+                                    input {
+                                        border-right: 1px solid #999;
+                                        &:after {
+                                            transform: translate(-50%,-50%);
+                                            font-family: 'Roboto';
+                                            position: absolute;
+                                            content: 'UNSPECIFIED';
+                                        }
+                                        &:checked {
+                                             background: $blue;
+                                             border: 1px solid $blue;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .third-block {
+                    div {
+                        text-align: center;
+                        img {
+                            height: 120px;
+                            display: inline-block;
+                        }
+                        .container-btn {
+                            margin-top: 15px;
+                            button {
+                                padding: 5px 10px;
+                                background: #fff;
+                                color: $blue;
+                                border: 1px solid $blue;
+                                border-radius: 3px;
+                                transition: all ease-out .2s;
+                                cursor: pointer;
+                                font-family: 'Roboto';
+                                &:hover {
+                                    color: #fff;
+                                    background: $blue;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .btn-container {
+            border-top: 1px solid #ccc;
+            display: flex;
+            justify-content: flex-end;
+            padding: 15px;
+            display: flex;
+            &.two {
+                justify-content: space-between;
+            }
+            .btn {
+                display: inline-block;
+                font-family: 'Roboto';
+                cursor: pointer;
+                &.next {
+                    color: $blue;
+                    float: right;
+                }
+                &.back {
+                    color: #777;
                 }
             }
         }

@@ -10,16 +10,40 @@ class App extends Component {
 
   render() {
     let Footer;
+    let handleClickNext = (e) => {
+         if(this.state.step === 'one') {
+             this.setState({
+                 step: 'two'
+             })
+         } else if (this.state.step === 'two') {
+             this.setState({
+                 step: 'three'
+             })
+         }
+    }
+    let handleClickBack = (e) => {
+        if (this.state.step === 'two') {
+            this.setState({
+                step: 'one'
+            })
+        }
+    }
+
     if(this.state.step === 'one') {
-        Footer = <p>Footer one</p>;
-    } else {
-        Footer = <p>Footer</p>;
+        Footer = <div className="btn-container">
+                        <div className="btn next" onClick={handleClickNext}>Next -></div>
+                 </div>;
+    } else if(this.state.step === 'two') {
+        Footer = <div className="btn-container two">
+                        <div className="btn back" onClick={handleClickBack}>Back</div>
+                        <div className="btn next" onClick={handleClickNext}>Next -></div>
+                 </div>;
     }
     return (
         <div className="app">
-            <h2>Sign up</h2>
-            <ProgressBar />
-            <Form/>
+            {(this.state.step === 'one' || this.state.step === 'two') ? <h2>Signup</h2> : <h2>Thank You</h2>}
+            <ProgressBar value={this.state.step} />
+            <Form step={this.state.step}/>
             {Footer}
         </div>
     );

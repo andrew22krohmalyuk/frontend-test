@@ -4,8 +4,6 @@ import { Provider } from 'react-redux';
 import store from "./store/store.js";
 import App from './containers/App';
 //import showResults from "./showResults";
-import Form from "./Form";
-import ProgressBar from './components/ProgressBar';
 import './styles/style.css';
 
 ReactDOM.render(
