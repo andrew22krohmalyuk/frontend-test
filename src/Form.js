@@ -1,6 +1,57 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+window.next = false;
+
+const validate = values => {
+    let emailIsOk = false;
+    let passIsOK = false;
+    let confirmIsOk = false;
+
+    const errors = {}
+    if (!values.email) {
+        errors.email = 'Email is Required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address';
+    } else {
+        emailIsOk = true;
+    }
+
+    if(values.password) {
+        if (values.password.length < 6) {
+            errors.password = 'Password should be minimum 6 characters';
+        } else {
+            passIsOK = true;
+        }
+    }
+
+    if (!values.password) {
+        errors.password = 'Password is Required';
+    } else if (values.password !== values.confirmPassword) {
+        errors.confirmPassword = 'Invalid Password';
+    } else {
+        confirmIsOk = true;
+    }
+
+    if(emailIsOk && emailIsOk && confirmIsOk) {
+        window.next = true;
+    }
+
+    if (!values.dayOfBirth && !values.monthOfBirth && !values.yearOfBirth) {
+        errors.age = 'Date Of Birth is Required'
+    } else if (Number(values.yearOfBirth) < 2000) {
+        errors.age = 'Sorry, you must be at least 18 years old'
+  }
+  return errors
+}
+
+const renderField = ({ input, label, type, meta: { touched, error } }) => (
+  <div>
+     {(touched && (error)) ? <span className="error">{error}</span> : <span>{label}</span>}
+      <input {...input} type={type}/>
+  </div>
+)
+
 class Form extends Component {
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
@@ -11,7 +62,7 @@ class Form extends Component {
         styles = {
             transform: 'translateX(-300px)'
         }
-    } else if(this.props.step === 'three') {
+     } else if(this.props.step === 'three') {
         styles = {
             transform: 'translateX(-600px)'
         }
@@ -22,32 +73,30 @@ class Form extends Component {
       <div className="container" style={styles}>
         <div className="first-block">
             <div>
-            <label>EMAIL</label>
-            <div>
                 <Field
-                    name="Email"
-                    component="input"
+                    name="email"
+                    component={renderField}
                     type="text"
+                    label="EMAIL"
                     />
              </div>
-         </div>
             <div>
-            <label>PASSWORD</label>
             <div>
                 <Field
                     name="password"
-                    component="input"
+                    component={renderField}
                     type="password"
+                    label="PASSWORD"
                     />
             </div>
          </div>
          <div>
-            <label>CONFIRM PASSWORD</label>
             <div>
                 <Field
-                    name="confirm-password"
-                    component="input"
+                    name="confirmPassword"
+                    component={renderField}
                     type="password"
+                    label="CONFIRM PASSWORD"
                     />
             </div>
           </div>
@@ -57,19 +106,19 @@ class Form extends Component {
                 <label>DATE OF BIRTH</label>
                 <div>
                 <Field
-                    name="day-of-birth"
+                    name="dayOfBirth"
                     component="input"
                     type="text"
                     placeholder="DD"
                     />
                 <Field
-                    name="month-of-birth"
+                    name="monthOfBirth"
                     component="input"
                     type="text"
                     placeholder="MM"
                     />
                 <Field
-                    name="year-of-birth"
+                    name="yearOfBirth"
                     component="input"
                     type="text"
                     placeholder="YYYY"
@@ -106,16 +155,17 @@ class Form extends Component {
             <div>
                 <img src={imgUrl} />
                 <div className="container-btn">
-                    <button type="submit" disabled={pristine || submitting}>Go to Dashboard -></button>
+                    <button type="submit" disabled={!window.next}>Go to Dashboard -></button>
                 </div>
             </div>
          </div>
       </div>
-    </form>
+     </form>
     );
   }
 };
 
 export default reduxForm({
   form: 'simple', // a unique identifier for this form
+  validate
 })(Form);

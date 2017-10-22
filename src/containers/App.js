@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from "../Form";
 import ProgressBar from '../components/ProgressBar';
+import showResults from '../showResults';
 
 class App extends Component {
   constructor(props) {
@@ -12,9 +13,13 @@ class App extends Component {
     let Footer;
     let handleClickNext = (e) => {
          if(this.state.step === 'one') {
-             this.setState({
-                 step: 'two'
-             })
+            if(window.next) {
+                this.setState({
+                    step: 'two'
+                })
+            } else {
+                alert('Input all fields!');
+            }
          } else if (this.state.step === 'two') {
              this.setState({
                  step: 'three'
@@ -43,7 +48,7 @@ class App extends Component {
         <div className="app">
             {(this.state.step === 'one' || this.state.step === 'two') ? <h2>Signup</h2> : <h2>Thank You</h2>}
             <ProgressBar value={this.state.step} />
-            <Form step={this.state.step}/>
+            <Form step={this.state.step} onSubmit={showResults}/>
             {Footer}
         </div>
     );

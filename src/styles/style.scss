@@ -72,6 +72,13 @@ $blue: #3498db;
                                 font-family: 'Roboto';
                                 font-size: 18px;
                             }
+                            span {
+                                font-family: 'Roboto';
+                                color: #999;
+                                &.error {
+                                    color: #e74c3c;
+                                }
+                            }
                         }
                     }
                 }

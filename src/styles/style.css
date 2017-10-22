@@ -81,6 +81,11 @@ input {
               line-height: 170%;
               font-family: 'Roboto';
               font-size: 18px; }
+            #root .app form .container .first-block div div span {
+              font-family: 'Roboto';
+              color: #999; }
+              #root .app form .container .first-block div div span.error {
+                color: #e74c3c; }
       #root .app form .container .second-block {
         padding: 10px; }
         #root .app form .container .second-block div {
