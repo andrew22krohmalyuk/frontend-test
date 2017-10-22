@@ -1,0 +1,78 @@
+@import "reset.scss";
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+$blue: #3498db;
+
+#root {
+    .app {
+        margin: 50px auto;
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        h2 {
+            color: $blue;
+            text-align: center;
+            padding: 25px 50px;
+            font-family: 'Roboto';
+        }
+        .progress-bar {
+            .bar-container {
+                width: 100%;
+                vertical-align: middle;
+                border: 1px solid #999;
+                border-left: 0px;
+                border-right: 0px;
+                .bar {
+                    height: 5px;
+                    position: relative;
+                    .active-bar {
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        height: 100%;
+                        left: 0;
+                        background: $blue;
+                        width: 50%;
+                    }
+                }
+            }
+        }
+        form {
+            position: relative;
+            width: 300px;
+            height: 250px;
+            overflow: hidden;
+            .container {
+                position: absolute;
+                width: 900px;
+                transform: translateX(0px);
+                transition: all ease-out .3s;
+                .first-block, .second-block, .third-block {
+                    display: inline-block;
+                    width: 300px;
+                }
+                .first-block {
+                    padding: 10px;
+                    div {
+                            margin-top: 15px;
+                        label {
+                            font-family: 'Roboto';
+                            color: #999;
+                        }
+                        div {
+                            margin-top: 15px;
+                            input {
+                                width: 100%;
+                                border: transparent;
+                                border-bottom: 1px solid #999;
+                                color: #444;
+                                padding-bottom: 5px;
+                                line-height: 170%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

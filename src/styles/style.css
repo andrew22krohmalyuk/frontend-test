@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Calibri"; }
+
+h1, h2, h3, h4, h5, h6, ul, li, p, a, div {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  list-style: none;
+  text-decoration: none;
+  font-weight: normal; }
+
+* {
+  box-sizing: border-box; }
+
+input {
+  outline: none;
+  border: 1px solid #aaa; }
+
+#root .app {
+  margin: 50px auto;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px; }
+  #root .app h2 {
+    color: #3498db;
+    text-align: center;
+    padding: 25px 50px;
+    font-family: 'Roboto'; }
+  #root .app .progress-bar .bar-container {
+    width: 100%;
+    vertical-align: middle;
+    border: 1px solid #999;
+    border-left: 0px;
+    border-right: 0px; }
+    #root .app .progress-bar .bar-container .bar {
+      height: 5px;
+      position: relative; }
+      #root .app .progress-bar .bar-container .bar .active-bar {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        background: #3498db;
+        width: 50%; }
+  #root .app form {
+    position: relative;
+    width: 300px;
+    height: 250px;
+    overflow: hidden; }
+    #root .app form .container {
+      position: absolute;
+      width: 900px;
+      transform: translateX(0px);
+      transition: all ease-out .3s; }
+      #root .app form .container .first-block, #root .app form .container .second-block, #root .app form .container .third-block {
+        display: inline-block;
+        width: 300px; }
+      #root .app form .container .first-block {
+        padding: 10px; }
+        #root .app form .container .first-block div {
+          margin-top: 15px; }
+          #root .app form .container .first-block div label {
+            font-family: 'Roboto';
+            color: #999; }
+          #root .app form .container .first-block div div {
+            margin-top: 15px; }
+            #root .app form .container .first-block div div input {
+              width: 100%;
+              border: transparent;
+              border-bottom: 1px solid #999;
+              color: #444;
+              padding-bottom: 5px;
+              line-height: 170%; }
